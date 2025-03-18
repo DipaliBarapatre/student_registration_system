@@ -47,6 +47,7 @@ gem "bootsnap", require: false
 gem 'devise'
 
 gem 'sidekiq', '~> 5.2.8'
+gem 'csv'
 
 
 group :development, :test do

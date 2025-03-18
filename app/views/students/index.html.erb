@@ -18,10 +18,21 @@
       <td><%= link_to 'Edit', edit_student_path(student) %></td>
       <td><%= link_to 'Show', student_path(student) %></td>
 
-      <% if student.is_verify? %>
+      <% unless student.is_verify? %>
 
         <td><%= button_to 'Verify', verify_student_path(student), method: :patch %></td>
       <%end%>
     </tr>
   <% end %>
 </table>
+
+
+<h2>Import Students</h2>
+<%= form_with url: import_students_path, method: :post, multipart: true do %>
+  <div>
+    <%= file_field_tag :file %>
+  </div>
+  <div>
+    <%= submit_tag "Import CSV" %>
+  </div>
+<% end %>
