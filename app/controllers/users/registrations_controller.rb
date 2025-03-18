@@ -4,7 +4,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
-  before_action :set_role, only: [:create]
 
   # GET /resource/sign_up
   def new
@@ -13,7 +12,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    # super
+     build_resource(sign_up_params)
+
+    if resource.save
+      set_flash_message! :notice, :signed_up if is_flashing_format?
+      redirect_to after_sign_up_path_for(resource) # Redirect instead of signing in
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
   end
 
   # GET /resource/edit
@@ -54,7 +63,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    super(resource)
+    # super(resource)
+    new_user_session_path
   end
 
   # The path used after sign up for inactive accounts.
@@ -62,8 +72,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super(resource)
   end
 
-  def set_role
-    debugger
-    
-  end
 end

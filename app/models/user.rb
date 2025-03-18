@@ -17,6 +17,8 @@ class User < ApplicationRecord
   validates :date_of_birth, :presence => true
   validate :validate_age
 
+  after_create :update_role
+
    def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       student_data = row.to_hash
@@ -46,6 +48,10 @@ class User < ApplicationRecord
           errors.add(:date_of_birth, 'Date of birth should be past date')
       end
   end 
+
+  def update_role
+    self.update(role: 'Student') if self.role.nil?
+  end
 
 
  

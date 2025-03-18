@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
 	before_action :get_student_details, only: [:show, :edit, :update, :verify]
 
 	before_action :validate_csv_file, only: [:import]
+	before_action :check_admin, only: [:verify]
 
 	def index
 	  @students = User.students 
@@ -61,4 +62,8 @@ class StudentsController < ApplicationController
         return
       end
 	end
+
+	def check_admin
+      redirect_to root_path, alert: "Not authorized" unless current_user.role == 'Admin'
+    end
 end

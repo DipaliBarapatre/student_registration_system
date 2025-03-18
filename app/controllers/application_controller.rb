@@ -6,7 +6,13 @@ class ApplicationController < ActionController::Base
       if resource.role == 'Admin'
         students_path
       else
-        resource.is_verify? ?  student_path(resource) : root_path
+        if resource.is_verify? 
+         student_path(resource)
+        else
+          sign_out current_user
+          flash[:alert] =  "Your account is not verified. Please contact support."
+          new_user_session_path
+        end 
       end
     end
 
