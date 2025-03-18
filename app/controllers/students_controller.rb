@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
 
-	before_action :get_student_details, only: [:show, :edit, :update]
+	before_action :get_student_details, only: [:show, :edit, :update, :verify]
 
 	def index
 	  @students = User.students 
@@ -19,6 +19,9 @@ class StudentsController < ApplicationController
     end
 
     def verify
+    	debugger
+    	@student.update(is_verify: true)
+    	redirect_to students_path, notice: 'Student verify successfully'
     end
 
 

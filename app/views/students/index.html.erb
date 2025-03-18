@@ -5,7 +5,7 @@
     <th>Email</th>
     <th>Date of Birth</th>
     <th>Address</th>
-    <th>Photo</th>
+    <th>Verify?</th>
     <th>Actions</th>
   </tr>
   <% @students.each do |student| %>
@@ -14,9 +14,14 @@
       <td><%= student.email %></td>
       <td><%= student.date_of_birth %></td>
       <td><%= student.address %></td>
+      <td><%= student.is_verify? %></td>
       <td><%= link_to 'Edit', edit_student_path(student) %></td>
       <td><%= link_to 'Show', student_path(student) %></td>
-      <td><%= link_to 'Verify', student_path(student) %></td>
+
+      <% unless student.is_verify? %>
+
+        <td><%= button_to 'Verify', verify_student_path(student), method: :patch %></td>
+      <%end%>
     </tr>
   <% end %>
 </table>

@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  resources :students, only: [:index, :show, :edit, :update] do
-
-  end
+  resources :students, only: [:index, :show, :edit, :update]
+  patch 'verify_student/:id', to: 'students#verify', as: "verify_student"
 end
