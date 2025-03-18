@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   after_create :update_role
 
+  after_commit :send_welcome_email, on: :create  # Send after user is created
+
    def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       student_data = row.to_hash
@@ -51,6 +53,11 @@ class User < ApplicationRecord
 
   def update_role
     self.update(role: 'Student') if self.role.nil?
+  end
+
+   def send_welcome_email
+    StudentMailer.welcome_email(self).deliver_later  # Use deliver_now for immediate sending
+    StudentMailer.student_register(self).deliver_later  # Use deliver_now for immediate sending
   end
 
 

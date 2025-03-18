@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>New Student Signed Up!</h1>
+    <p><strong>Name:</strong> <%= @user.name %></p>
+    <p><strong>Email:</strong> <%= @user.email %></p>
+    <p><strong>Signed up at:</strong> <%= @user.created_at.strftime("%B %d, %Y %I:%M %p") %></p>
+    <p>Admin Action Required: Please verify this student if needed.</p>
+  </body>
+</html>

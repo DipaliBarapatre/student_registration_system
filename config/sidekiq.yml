@@ -1,0 +1,7 @@
+:schedule:
+  good_morning_job:
+    cron: "0 6 * * *"  # Runs at 6 AM daily
+    class: "GoodMorningJob"
+  birthday_job:
+    cron: "0 9 * * *"  # Runs every day at 9 AM
+    class: "BirthdayJob"

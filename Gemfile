@@ -48,6 +48,7 @@ gem 'devise'
 
 gem 'sidekiq', '~> 5.2.8'
 gem 'csv'
+gem 'sidekiq-cron'
 
 
 group :development, :test do
