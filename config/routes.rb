@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     root to: "devise/sessions#new"
   end
 
-  resources :students, only: [:index, :show] do
+  resources :students, only: [:index, :show, :edit, :update] do
 
   end
 end

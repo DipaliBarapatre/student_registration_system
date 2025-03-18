@@ -64,5 +64,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def set_role
     debugger
+    
   end
 end

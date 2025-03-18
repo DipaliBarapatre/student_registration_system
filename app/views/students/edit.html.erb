@@ -1,0 +1,41 @@
+<h1>Edit Student</h1>
+
+<%= form_with(url: student_path, method: :patch, local: true) do |form| %>
+
+<% if @student.errors.any? %>
+  <div style="color: red; border: 1px solid red; padding: 10px;">
+    <h3><%= pluralize(@student.errors.count, "error") %> prevented this student from being saved:</h3>
+    <ul>
+      <% @student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+    <div>
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+
+  <div>
+    <%= form.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back to Students List', students_path %>
