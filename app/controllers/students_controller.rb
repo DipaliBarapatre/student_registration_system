@@ -35,6 +35,14 @@ class StudentsController < ApplicationController
       end
   end
 
+  def export
+    @students = User.students
+
+    respond_to do |format|
+      format.csv { send_data User.to_csv, filename: "students-#{Date.today}.csv" }
+    end
+  end
+
 
 	private
 

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :students, only: [:index, :show, :edit, :update] do
       collection do
         post :import
+        get :export
       end
   end
   patch 'verify_student/:id', to: 'students#verify', as: "verify_student"

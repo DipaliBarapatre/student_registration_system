@@ -27,6 +27,18 @@ class User < ApplicationRecord
     end
   end
 
+  def self.to_csv
+    attributes = %w[name email date_of_birth] # Column headers
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes # Add headers
+
+      all.find_each do |student|
+        csv << student.attributes.values_at(*attributes)
+      end
+    end
+  end
+
   private
 
   def validate_age
