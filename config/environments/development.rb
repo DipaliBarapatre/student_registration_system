@@ -75,5 +75,20 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+ config.action_mailer.delivery_method = :smtp
+# Looking to send emails in production? Check out our Email API/SMTP product!
+config.action_mailer.smtp_settings = {
+  user_name: '91f8e51a9b71b1',
+  password: '816d3aa3154088',
+  address: 'sandbox.smtp.mailtrap.io',
+  host: 'sandbox.smtp.mailtrap.io',
+  port: '2525',
+  authentication: :login
+}
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_caching = false
+
 
 end

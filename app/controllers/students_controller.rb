@@ -19,8 +19,8 @@ class StudentsController < ApplicationController
     end
 
     def verify
-    	debugger
     	@student.update(is_verify: true)
+    	VerificationEmailJob.set(wait: 5.seconds).perform_later(@student)
     	redirect_to students_path, notice: 'Student verify successfully'
     end
 
