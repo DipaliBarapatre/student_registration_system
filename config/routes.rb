@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # devise_for :users
-  devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'signup' }
+  devise_for :users, controllers: {
+   registrations: "users/registrations", 
+  }
 
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,5 +15,9 @@ Rails.application.routes.draw do
   # root "devise/sessions#new"
   devise_scope :user do
     root to: "devise/sessions#new"
+  end
+
+  resources :students, only: [:index, :show] do
+
   end
 end

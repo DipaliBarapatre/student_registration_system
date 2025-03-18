@@ -9,4 +9,4 @@
 #   end
 
 
-User.create(role: 'Admin', email: 'Admin')
+User.create(role: 'Admin', email: 'admin@gmail.com', password: 'Admin@123', is_verify: true)
